@@ -1,0 +1,726 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	transition-duration: 0.5s;
+	background: rgba(212,228,239,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=1 );
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+::placeholder {
+  color: #ccc;
+  opacity: 1; /* Firefox */
+}
+
+*:focus {
+	outline: none;
+}
+
+.logo {
+    position: absolute;
+    transform: translateX(-50%);
+    height: 25px;
+}	
+
+.mainbutton {
+	box-shadow: inset 0px 1px 0px 0px #7a8eb9;
+	background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+	background-color: #637aad;
+	border: none;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 6px 12px;
+	text-decoration: none;
+	height: 40px;
+	border-radius: 30px;
+}
+.mainbutton:hover {
+	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+	background-color:#5972a7;
+}
+.mainbutton:active {
+	position:relative;
+	top:1px;
+}
+
+.maininput {
+     padding: 10px;
+     font-size: 16px;
+     border-width: 1px;
+     border-color: #CCCCCC;
+     background-color: #FFFFFF;
+     color: #637aad;
+     border-style: solid;
+     border-radius: 5px;
+     box-shadow: 0px 0px 5px rgba(66,66,66,.75);
+	 font-weight: bold;
+}
+
+.maininput:focus {
+     outline:none;
+}
+
+.maintitle {
+	font-size: 25px;
+	color: #637aad;
+	font-weight: bold;
+	padding-left: 0px;
+	margin-bottom: 5px;
+	margin-top: 25px;
+	font-family: Arial;
+}
+
+.mainlabel {
+	color: #637aad;
+	font-size: 15px;
+	padding-left: 0px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 100;
+	margin: -60px 0 0 -60px;
+	border: 20px solid rgba(255, 255, 255, .2);
+	border-radius: 50%;
+	border-top: 20px solid rgba(255, 255, 255, 1);
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#panels{
+	padding-top: 60px;
+}
+
+.appbar {
+	height: 55px;
+	width: 100%;
+	position: fixed;
+	background: #5972a7;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1000;
+	-moz-box-shadow:    0px 2px 5px 1px #444;
+	-webkit-box-shadow: 0px 2px 5px 1px #444;
+	box-shadow:         0px 2px 5px 1px #444;
+}
+
+.roomwrapper {
+	height: 100%;
+	width: 300px;
+	margin-left: 10px;
+	border: none;
+	background: transparent;
+	float: left;
+}
+
+.roomwrapper2 {
+	height: max-content;
+	width: max-content;
+	border: none;
+	background: transparent;
+	float: left;
+	position: absolute;
+	left: 50%;
+	top: 70px;
+	z-index: 1;
+	transform: translateX(-50%);
+}
+
+.rooms {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: left;
+	background: transparent;
+	margin-right: 10px;
+	padding-left: 8px;
+	transition: transform .05s;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	height: 40px;
+	width: 100%;
+	background-color: #8396BE;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.rooms option {
+    background-color: #a9b9dd;
+	cursor: pointer;
+	padding-left: 10px;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.roomfix {
+	margin: 0px !important;
+}
+
+.addroom {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: left;
+	background: transparent;
+	margin-right: 10px;
+	transition: transform .05s;
+	position: absolute;
+}
+
+.addroom:hover {
+	text-shadow: 0px 0px 2px #fff;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.user {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: right;
+	background: transparent;
+	margin-right: 10px;
+	transition: transform .05s;
+}
+
+.user:hover {
+	text-shadow: 0px 0px 2px #fff;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.refresh {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: right;
+	background: transparent;
+	transition: transform .05s;
+}
+
+.refresh:hover {
+	text-shadow: 0px 0px 2px #fff;
+	-webkit-animation: spin 1.5s linear infinite;
+	animation: spin 1.5s linear infinite;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.mpanel {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	position: fixed;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.1s linear, opacity 0.1s linear;
+	background: rgba(212,228,239,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=1 );
+}
+
+.mbutton {
+	width: 90% !important;
+	height: 70px !important;
+	display: block !important;
+	margin-top: 10px !important;
+	position: relative !important;
+	font-size: 30px !important;
+	font-weight: bold !important;
+}
+
+.micon {
+	border: none;
+	height: 100%;
+	float: left;
+	background: transparent;
+}
+
+.devicename {
+	border: none;
+	height: 100%;
+	top: 0px;
+	float: left;
+	background: transparent;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: left;
+	position: absolute;
+	margin-right: 40px;
+}
+
+.muidfield {
+	display: block;
+	width: 400px;
+	position: absolute;
+	margin-top: 70px;
+	float: left;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+}
+
+.muidinput {
+	display: inline !important;
+	width: 75% !important;
+	border-radius: 0px 30px 30px 0px !important;
+	margin: 0px !important;
+	float: left !important;
+	box-shadow: none;
+	padding-left: 5px;
+	padding-right: 15px;
+}
+
+.muidlabel {
+	display: inline !important;
+	border-radius: 30px 0px 0px 30px !important;
+	margin: 0px !important;
+	float: left !important;
+	width: 25% !important;
+	padding: 0px;
+}
+
+.muidlabel:active {
+	top: 0px !important;
+}
+
+.msetting {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: right;
+	background: transparent;
+	transition: transform .05s;
+	font-size: 40px !important;
+	padding: 0px 15px;
+}
+
+.msetting:hover {
+	text-shadow: 0px 0px 2px #fff;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.name {
+	margin: 10px;
+	margin-top: 125px;
+	font-size: 30px;
+	color: #ffffff;
+	white-space: nowrap;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+.unit {
+	padding: 0px;
+	margin: 0px;
+	padding-right: 15px;
+	color: #ffffff;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.numberLabel {
+	width: 230px;
+	padding: 0px;
+	margin: 0px;
+	color: #ffffff;
+	font-size: 110px;
+	font-weight: bold;
+}
+
+.deviceButton {
+	border-radius: 10px;
+	border: 3px solid #56B373;
+	background-color: transparent;
+	width: 250px;
+	height: 40px;
+	padding: 0px;
+	margin-top: 10px;
+	color: #ffffff;
+	font-size: 15px;
+	transition-duration: 0.1s;
+	cursor: pointer;
+}	
+
+.deviceButton:focus {
+	outline: none;   
+}
+
+.deviceButton:hover {
+	background-color: #56B373;
+	transition-duration: 0.2s;
+}			
+
+.deviceButton:active {
+	background-color: #3B7A4E;
+	border: 3px solid #3B7A4E;
+}
+
+.deviceButtonOff {
+	border-radius: 10px;
+	border: 3px solid #FF3D3D;
+	background-color: transparent;
+	width: 250px;
+	height: 40px;
+	padding: 0px;
+	margin-top: 10px;
+	color: #ffffff;
+	font-size: 15px;
+	transition-duration: 0.1s;
+	cursor: pointer;
+}	
+
+.deviceButtonOff:focus {
+	outline: none;   
+}
+
+.deviceButtonOff:hover {
+	background-color: #FF3D3D;
+	transition-duration: 0.2s;
+}			
+
+.deviceButtonOff:active {
+	background-color: #890000;
+	border: 3px solid #890000;
+}
+
+.valueinput{
+	width: 80px;
+	height: 35px;
+	margin-top: 10px;
+	background-color: transparent;
+	border-radius: 10px;
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.notmatch{
+	border: 2px solid rgba(255, 000, 000, 0.6);
+}
+
+.valueinput:focus {
+	outline: none;   
+}
+
+.hide {
+   display: none;
+}
+
+.deviceButton2 {
+	width: 100%;
+	height: 100%;
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.macaddress {
+	position: fixed;
+	bottom: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #788fc0;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.mrename {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: right;
+	background: transparent;
+	transition: transform .05s;
+	font-size: 30px !important;
+	padding: 0px 20px;
+}
+
+.mrename:hover {
+	text-shadow: 0px 0px 2px #fff;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.mdelete {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	background: transparent;
+	transition: transform .05s;
+	font-size: 30px !important;
+	padding: 0px 20px;
+}
+
+.mdelete:hover {
+	text-shadow: 0px 0px 2px #fff;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.mback {
+	color: white;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	float: left;
+	background: transparent;
+	transition: transform .05s;
+	font-size: 30px !important;
+	padding: 0px 20px;
+}
+
+.mback:hover {
+	text-shadow: 0px 0px 2px #fff;
+	top: 0px !important;
+	transform: scale(1.1);
+}
+
+.childloader{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background-color: rgba(50, 50, 50, 0.8);
+	border-radius: 10px;
+}
+
+.logout {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	position: fixed;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.1s linear, opacity 0.1s linear;
+	background: rgba(212,228,239,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=1 );
+}
+
+@media (min-width: 1000px) {
+	.devicebutton {
+		-moz-box-shadow:    0px 2px 5px 1px #444;
+		-webkit-box-shadow: 0px 2px 5px 1px #444;
+		box-shadow:         0px 2px 5px 1px #444;
+		background-color: #7a8eb9;
+		border: none;
+		display: block;
+		cursor: pointer;
+		color: #ffffff;
+		font-family: Arial;
+		font-size: 20px;
+		font-weight: bold;
+		padding: 6px 0px 6px 10px;
+		text-decoration: none;
+		text-align: left;
+		width: 30%;
+		float: left;
+		margin: 1%;
+		left: 2%;
+		height: 65px;
+		margin-top: 15px;
+		position: relative;
+	}
+
+	.devicebutton:hover {
+		background-color: #5972a7;
+	}
+	.devicebutton:active {
+		position: relative;
+		top: 1px;
+	}
+}
+
+@media (max-width: 999px) and (min-width: 700px) {
+	.devicebutton {
+		-moz-box-shadow:    0px 2px 5px 1px #444;
+		-webkit-box-shadow: 0px 2px 5px 1px #444;
+		box-shadow:         0px 2px 5px 1px #444;
+		background-color: #7a8eb9;
+		border: none;
+		display: block;
+		cursor: pointer;
+		color: #ffffff;
+		font-family: Arial;
+		font-size: 20px;
+		font-weight: bold;
+		padding: 6px 0px 6px 10px;
+		text-decoration: none;
+		text-align: left;
+		width: 45%;
+		float: left;
+		margin: 2%;
+		left: 1%;
+		height: 65px;
+		margin-top: 15px;
+		position: relative;
+	}
+
+	.devicebutton:hover {
+		background-color: #5972a7;
+	}
+	.devicebutton:active {
+		position: relative;
+		top: 1px;
+	}
+}
+
+@media (max-width: 699px) {
+	.devicebutton {
+		-moz-box-shadow:    0px 2px 5px 1px #444;
+		-webkit-box-shadow: 0px 2px 5px 1px #444;
+		box-shadow:         0px 2px 5px 1px #444;
+		background-color: #8396BE;
+		border: none;
+		display: block;
+		cursor: pointer;
+		color: #ffffff;
+		font-family: Arial;
+		font-size: 20px;
+		font-weight: bold;
+		padding: 6px 0px 6px 10px;
+		text-decoration: none;
+		text-align: left;
+		width: 90%;
+		height: 65px;
+		margin-top: 15px;
+		position: relative;
+	}
+
+	.devicebutton:hover {
+		background-color: #5972a7;
+	}
+	.devicebutton:active {
+		position: relative;
+		top: 1px;
+	}
+	
+	.roomwrapper {
+		height: 100%;
+		width: 50%;
+		margin-left: 10px;
+		border: none;
+		background: transparent;
+		float: left;
+	}
+	
+	.muidfield {
+		display: block;
+		width: 90%;
+		position: absolute;
+		margin-top: 70px;
+		float: left;
+		left: 5%;
+		top: 40%;
+		transform: translateY(-50%);
+	}
+}
+
+@media (min-width: 699px) {
+	.logincover {
+		padding: 20px 30px;
+		border-radius: 20px;
+		background: rgba(255, 255, 255, .3);
+		-moz-box-shadow: 0px 2px 5px 1px #444;
+		-webkit-box-shadow: 0px 0px 15px -5px #444;
+	}
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="pragma" content="no-cache">
+		
+		<title>eSwitch Project</title>
+		<link rel='stylesheet' href='./styles/default.css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-database.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body id="body">
+		<div id="panelsWrapper" class="hide" align="center">
+			<div id="panelBar" class="appbar">
+				<button class="roomwrapper" disabled="disabled">					
+					<select id="filter" class="rooms" onchange="selectFilter()"></select>
+				</button>
+				<button class="fa fa-user user" style="font-size:30px" onclick="openPanel('logoutPanel')"></button>
+				<button class="fa fa-refresh refresh" style="font-size:30px" onclick="location.reload()"></button>
+			</div>
+			<div id="panels"></div>
+			<div id="buttons"></div>
+			<div id="logoutPanel" class="mpanel" align="center" style="z-index:1001">
+				<div id="panelBar" class="appbar">
+					<div class="center maintitle" style="color:white;font-size:25px">Profile</div>
+					<button onclick="back()" class="mback fa fa-arrow-left"></button>
+				</div>
+				<div class="muidfield">
+					<b id="uid" class="mainlabel" style="margin-bottom:20px;display:block;font-size:20px"></b>
+					<button class="mainbutton muidlabel">User ID</button>
+					<input id="uidText" readonly class="muidinput maininput" style="width: 300px;height: 40px;border: 3px solid rgba(255, 255, 255, .6)" type="text" onclick="copyUid()">
+					<button class="mainbutton" style="margin:50px;width:150px" onclick="onLogout()">Log out</button>
+				</div>
+			</div>
+		</div>
+		<div id="loaderPanel" align="center" class="loader"></div>
+		<div id="loginPanel" class="hide" align="center">
+			<div id="login" align="center">
+				<div class="center logincover" align="center">
+					<img class="logo" src="./img/logo.png">
+					<form id="loginPanelForm" align="center" style="color:#ffffff;font-size:17px;width:250px" onsubmit="onLogin()">
+						<b><p align="center" class="maintitle">Sign in</p></b></br>
+						<p id="loginStatus" align="center" style="margin-top:0px;margin-bottom:10px;font-size:17px;color:#ff1f1f;height:max-content"></p>
+						<p align="left" class="mainlabel">Email:</p>
+						<input id="email" class="maininput" align="left" type="email" placeholder="Enter your email" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:10px">
+						<p id="passwordlabel" align="left" class="mainlabel">Password:</p>
+						<input id="password" class="maininput" align="left" type="password" placeholder="Enter your password" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:20px">
+						<input id="loginbutton" class="mainbutton" type="submit" value="Sign in" style="width:250px;font-weight:bold; margin-top:20px">
+						<input id="createaccount" class="mainbutton" type="button" value="Create account" style="width:250px;font-weight:bold;margin-top:10px" onclick="registerpanel()">
+						<input id="forgotpassword" class="mainbutton" type="button" value="Forgot Password" style="width:250px;font-weight:bold;margin-top:10px;margin-bottom:10px" onclick="resetpanel()">
+					</form>
+					<form id="registerPanelForm" class="hide" align="center" style="color:#ffffff;font-size:17px;width:250px" onsubmit="onRegister()">
+						<b><p align="center" class="maintitle">Register</p></b></br>
+						<p id="registerStatus" align="center" style="margin-top:0px;margin-bottom:10px;font-size:17px;color:#ff1f1f;height:max-content"></p>
+						<p align="left" class="mainlabel">Email:</p>
+						<input id="registeremail" class="maininput" align="left" type="email" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:10px">
+						<p id="passwordlabel" align="left" class="mainlabel">Password:</p>
+						<input id="registerpassword" class="maininput" align="left" type="password" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:10px">
+						<p id="confirmplabel" align="left" class="mainlabel">Confirm Password:</p>
+						<input id="confirmpassword" class="maininput" align="left" type="password" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:20px">
+						<input id="register" class="mainbutton" type="submit" value="Register" style="width:250px;font-weight:bold;margin-top:20px">
+						<input id="haveaccount" class="mainbutton" type="button" value="I've got an account" style="width:250px;font-weight:bold;margin-top:10px;margin-bottom:10px" onclick="accountpanel()">
+					</form>
+					<form id="resetPanelForm" class="hide" align="center" style="color:#ffffff;font-size:17px;width:250px" onsubmit="onReset()">
+						<b><p align="center" class="maintitle">Forgot Password</p></b></br>
+						<p id="resetStatus" align="center" style="margin-top:0px;margin-bottom:10px;font-size:17px;color:#ff1f1f;height:max-content"></p>
+						<p align="left" class="mainlabel">Email:</p>
+						<input id="resetemail" class="maininput" align="left" type="email" style="width:250px;margin-top:0px;font-size:15px;margin-bottom:20px">
+						<input id="reset" class="mainbutton" type="submit" value="Send reset email" style="width:250px;font-weight:bold;margin-top:20px">
+						<input id="resetlogin" class="mainbutton" type="button" value="I want to Login" style="width:250px;font-weight:bold;margin-top:10px;margin-bottom:10px" onclick="accountpanel()">
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="./js/config.js?"></script>	
+		<script src="./js/client.js?"></script>	
+	</body>	
+</html>
